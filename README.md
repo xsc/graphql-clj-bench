@@ -2,7 +2,7 @@
 
 Benchmarks for [graphql-clj][ql] using [criterium][c] via [perforate][p].
 
-[ql]: https://github.com/tendant/graphql-cl
+[ql]: https://github.com/tendant/graphql-clj
 [c]: https://github.com/hugoduncan/criterium
 [p]: https://github.com/davidsantiago/perforate
 
