@@ -52,7 +52,7 @@
      columnCount
    }
 
-   fragment Paiting on PaintingProject {
+   fragment Painting on PaintingProject {
      dominantColor { name, hexCode }
    }
    ")
