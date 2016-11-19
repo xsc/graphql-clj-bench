@@ -1,4 +1,4 @@
-(ns graphql-clj-bench.query-execution
+(ns graphql-clj-bench.query-executor
   (:require [perforate.core :refer [defgoal defcase]]
             [graphql-clj.executor :as executor]
             [graphql-clj.parser :as parser]

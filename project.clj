@@ -15,5 +15,6 @@
   {:benchmark-paths ["src"]
    :environments
    [{:name :query-parser
-     :namespaces [graphql-clj-bench.query-parser
-                  graphql-clj-bench.query-execution]}]})
+     :namespaces [graphql-clj-bench.query-parser]}
+    {:name :query-executor
+     :namespaces [graphql-clj-bench.query-executor]}]})
