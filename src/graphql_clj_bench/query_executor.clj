@@ -17,8 +17,8 @@
 (def prep-statement (memoize prep-statement*))
 
 (def query-str
-  "query($id:String!) {
-    human (id:$id) {
+  "query {
+    human (id: \"1002\") {
       id
       name
       friends {
@@ -41,10 +41,10 @@
 (defgoal caching "Verifying GraphQL query execution overhead when caching query string parsing and validation.")
 
 (defcase caching :nested-query []
-  (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema query-str) {:id "1002"}))
+  (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema query-str)))
 
 (declare inline-resolvers)
 (defgoal inline-resolvers "Verifying GraphQL query execution overhead with inline resolver functions.")
 
 (defcase inline-resolvers :nested-query []
-  (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema s-sw/resolver-fn query-str) {:id "1002"}))
+  (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema s-sw/resolver-fn query-str)))
