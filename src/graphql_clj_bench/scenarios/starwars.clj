@@ -1,10 +1,9 @@
 (ns graphql-clj-bench.scenarios.starwars
   (:require [graphql-clj.parser :as parser]
             [graphql-clj.validator :as validator]
-            [graphql-clj.resolver :as resolver]
             [clojure.core.match :as match]))
 
-(def starwars-schema-str "enum Episode { NEWHOPE, EMPIRE, JEDI }
+(def schema-str "enum Episode { NEWHOPE, EMPIRE, JEDI }
 
 interface Character {
   id: String!
@@ -35,13 +34,8 @@ type Query {
   droid(id: String!): Droid
 }
 
-type Mutation {
-  createHuman(name: String, friends: [String]): Human
-}
-
 schema {
   query: Query
-  mutation: Mutation
 }")
 
 (def luke {:id "1000"
@@ -113,15 +107,7 @@ schema {
 
 (def human-id (atom 2050))
 
-(defn create-human [args]
-  (let [new-human-id (str (swap! human-id inc))
-        new-human {:id new-human-id
-                   :name (get args "name")
-                   :friends (get args "friends")}]
-    (swap! humanData assoc new-human-id new-human)
-    new-human))
-
-(defn starwars-resolver-fn [type-name field-name]
+(defn resolver-fn [type-name field-name]
   (match/match
     [type-name field-name]
     ["Query" "hero"] (fn [context parent args]
@@ -137,8 +123,6 @@ schema {
                           (get-friends parent))
     ["Character" "friends"] (fn [context parent args]
                               (get-friends parent))
-    ["Mutation" "createHuman"] (fn [context parent args]
-                                 (create-human args))
     :else nil))
 
-(def starwars-schema (validator/validate-schema (parser/parse starwars-schema-str)))
+(def schema (validator/validate-schema (parser/parse schema-str)))

@@ -17,32 +17,34 @@
 (def prep-statement (memoize prep-statement*))
 
 (def query-str
-  "query {\n  human (id:\"1002\") {\n    id\n    name\n    friends {\n      id\n      name\n      friends {\n        id\n      }\n    }\n  }\n}")
+  "query($id:String!) {
+    human (id:$id) {
+      id
+      name
+      friends {
+        id
+        name
+        friends {
+          id
+        }
+      }
+    }
+  }")
 
-(declare no-precompilation)
-(defgoal no-precompilation "Verifying GraphQL query string parsing, validation, and execution overhead.")
+(declare no-caching)
+(defgoal no-caching "Verifying GraphQL query string parsing, validation, and execution overhead.")
 
-(defcase no-precompilation :nested-query []
-  (executor/execute nil s-sw/starwars-schema s-sw/starwars-resolver-fn query-str))
-
-(declare precompilation)
-(defgoal precompilation "Verifying GraphQL query execution overhead for an already parsed and validated query string.")
-
-(def valid-query (prep-statement s-sw/starwars-schema query-str))
-
-(defcase precompilation :nested-query []
-  (executor/execute nil s-sw/starwars-schema s-sw/starwars-resolver-fn valid-query))
+(defcase no-caching :nested-query []
+  (executor/execute nil s-sw/schema s-sw/resolver-fn query-str {:id "1002"}))
 
 (declare caching)
 (defgoal caching "Verifying GraphQL query execution overhead when caching query string parsing and validation.")
 
 (defcase caching :nested-query []
-  (->> (prep-statement s-sw/starwars-schema query-str)
-       (executor/execute nil s-sw/starwars-schema s-sw/starwars-resolver-fn)))
+  (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema query-str) {:id "1002"}))
 
-;(declare inline-resolvers)
-;(defgoal inline-resolvers "Verifying GraphQL query execution overhead with inline resolver functions.")
-;
-;(defcase inline-resolvers :nested-query []
-;  (->> (prep-statement s-sw/starwars-schema s-sw/starwars-resolver-fn query-str)
-;       (executor/execute nil s-sw/starwars-schema s-sw/starwars-resolver-fn)))
+(declare inline-resolvers)
+(defgoal inline-resolvers "Verifying GraphQL query execution overhead with inline resolver functions.")
+
+(defcase inline-resolvers :nested-query []
+  (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema s-sw/resolver-fn query-str) {:id "1002"}))

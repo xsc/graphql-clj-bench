@@ -1,6 +1,6 @@
 (defproject graphql-clj-bench "0.1.0-SNAPSHOT"
   :description "Benchmarks for 'tendant/graphql-clj'."
-  :url "http://example.com/FIXME"
+  :url "https://github.com/xsc/graphql-clj-bench"
   :license {:name "MIT License"
             :url "https://opensource.org/licenses/MIT"
             :year 2016
