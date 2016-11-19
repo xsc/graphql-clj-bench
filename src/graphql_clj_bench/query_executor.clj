@@ -31,20 +31,13 @@
     }
   }")
 
-(declare no-caching)
-(defgoal no-caching "Verifying GraphQL query string parsing, validation, and execution overhead.")
+(defgoal query-execution "Verifying GraphQL query execution overhead")
 
-(defcase no-caching :nested-query []
-  (executor/execute nil s-sw/schema s-sw/resolver-fn query-str {:id "1002"}))
+(defcase query-execution :uncached []
+  (executor/execute nil s-sw/schema s-sw/resolver-fn query-str))
 
-(declare caching)
-(defgoal caching "Verifying GraphQL query execution overhead when caching query string parsing and validation.")
-
-(defcase caching :nested-query []
+(defcase query-execution :cached []
   (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema query-str)))
 
-(declare inline-resolvers)
-(defgoal inline-resolvers "Verifying GraphQL query execution overhead with inline resolver functions.")
-
-(defcase inline-resolvers :nested-query []
+(defcase query-execution :cached-inline-resolvers []
   (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema s-sw/resolver-fn query-str)))
