@@ -18,7 +18,7 @@
 
 (def query-str
   "query {
-    human (id: \"1002\") {
+    human(id:\"1002\") {
       id
       name
       friends {
@@ -41,3 +41,32 @@
 
 (defcase query-execution :cached-inline-resolvers []
   (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema s-sw/resolver-fn query-str)))
+
+(def query-str-vars-frag
+  "query($id:String!) {
+    human(id:$id) {
+      ...IdName
+      friends {
+        ...IdName
+        friends {
+          id
+        }
+      }
+    }
+  }
+
+  fragment IdName on Character {
+    id
+    name
+  }")
+
+(defgoal query-execution-vars-frag "Verifying GraphQL query execution overhead with variables and fragments")
+
+(defcase query-execution-vars-frag :uncached []
+  (executor/execute nil s-sw/schema s-sw/resolver-fn query-str-vars-frag {"id" "1002"}))
+
+(defcase query-execution-vars-frag :cached []
+  (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema query-str-vars-frag) {"id" "1002"}))
+
+(defcase query-execution-vars-frag :cached-inline-resolvers []
+  (executor/execute nil s-sw/schema s-sw/resolver-fn (prep-statement s-sw/schema s-sw/resolver-fn query-str-vars-frag) {"id" "1002"}))
