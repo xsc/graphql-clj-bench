@@ -6,7 +6,7 @@
             :year 2016
             :key "mit"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [graphql-clj "0.1.20-SNAPSHOT"]
+                 [graphql-clj "0.1.20"]
                  [clojure-future-spec "1.9.0-alpha13"]
                  [org.clojure/core.match "0.3.0-alpha4"]
                  [perforate "0.3.4"]]
