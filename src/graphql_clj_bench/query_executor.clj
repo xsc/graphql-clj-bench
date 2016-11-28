@@ -33,6 +33,9 @@
 
 (defgoal query-execution "Verifying GraphQL query execution overhead")
 
+(defcase query-execution :parsing-only []
+  (parser/parse query-str))
+
 (defcase query-execution :uncached []
   (executor/execute nil s-sw/schema s-sw/resolver-fn query-str))
 
@@ -61,6 +64,9 @@
   }")
 
 (defgoal query-execution-vars-frag "Verifying GraphQL query execution overhead with variables and fragments")
+
+(defcase query-execution-vars-frag :parsing-only []
+  (parser/parse query-str-vars-frag))
 
 (defcase query-execution-vars-frag :uncached []
   (executor/execute nil s-sw/schema s-sw/resolver-fn query-str-vars-frag {"id" "1002"}))
