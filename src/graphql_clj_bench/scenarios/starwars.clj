@@ -1,6 +1,6 @@
 (ns graphql-clj-bench.scenarios.starwars
   (:require [graphql-clj.parser :as parser]
-            [graphql-clj.validator :as validator]
+            [graphql-clj.schema-validator :as schema-validator]
             [clojure.core.match :as match]))
 
 (def schema-str "enum Episode { NEWHOPE, EMPIRE, JEDI }
@@ -125,4 +125,4 @@ schema {
                               (get-friends parent))
     :else nil))
 
-(def schema (validator/validate-schema (parser/parse schema-str)))
+(def validated-schema (schema-validator/validate-schema schema-str))

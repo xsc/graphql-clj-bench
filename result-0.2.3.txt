@@ -1,0 +1,217 @@
+Benchmarking environment:  :query-parser
+======================
+Reflection warning, graphql_clj/parser.clj:20:23 - call to method charAt can't be resolved (target class is unknown).
+Reflection warning, graphql_clj/parser.clj:173:80 - call to java.lang.Double ctor can't be resolved.
+Reflection warning, graphql_clj/parser.clj:284:20 - reference to field location can't be resolved.
+Reflection warning, graphql_clj/parser.clj:285:17 - reference to field getMessage can't be resolved.
+Benchmarking the following goals:
+query-parser-performance
+Goal:  Verifying GraphQL query parser performance.
+-----
+Case:  :query-with-inline-spread
+Evaluation count : 28654860 in 60 samples of 477581 calls.
+             Execution time mean : 2.121759 µs
+    Execution time std-deviation : 48.480317 ns
+   Execution time lower quantile : 2.058283 µs ( 2.5%)
+   Execution time upper quantile : 2.253797 µs (97.5%)
+
+Found 7 outliers in 60 samples (11.6667 %)
+        low-severe       3 (5.0000 %)
+        low-mild         4 (6.6667 %)
+ Variance from outliers : 10.9877 % Variance is moderately inflated by outliers
+
+Case:  :simple-query-with-explicit-operation
+Evaluation count : 37379280 in 60 samples of 622988 calls.
+             Execution time mean : 1.640859 µs
+    Execution time std-deviation : 35.438836 ns
+   Execution time lower quantile : 1.597995 µs ( 2.5%)
+   Execution time upper quantile : 1.730903 µs (97.5%)
+
+Found 5 outliers in 60 samples (8.3333 %)
+        low-severe       3 (5.0000 %)
+        low-mild         2 (3.3333 %)
+ Variance from outliers : 9.4417 % Variance is slightly inflated by outliers
+
+Case:  :complex-query-instaparse-only
+Evaluation count : 10140 in 60 samples of 169 calls.
+             Execution time mean : 6.127949 ms
+    Execution time std-deviation : 136.721562 µs
+   Execution time lower quantile : 5.939692 ms ( 2.5%)
+   Execution time upper quantile : 6.449551 ms (97.5%)
+
+Found 6 outliers in 60 samples (10.0000 %)
+        low-severe       5 (8.3333 %)
+        low-mild         1 (1.6667 %)
+ Variance from outliers : 10.9546 % Variance is moderately inflated by outliers
+
+Case:  :query-with-fragment-spread                                                                                                                                                       [124/1825]
+Evaluation count : 23093820 in 60 samples of 384897 calls.
+             Execution time mean : 2.653264 µs
+    Execution time std-deviation : 100.477118 ns
+   Execution time lower quantile : 2.544009 µs ( 2.5%)
+   Execution time upper quantile : 2.783487 µs (97.5%)
+
+Found 1 outliers in 60 samples (1.6667 %)
+        low-severe       1 (1.6667 %)
+ Variance from outliers : 23.8651 % Variance is moderately inflated by outliers
+
+Case:  :complex-query
+Evaluation count : 7699500 in 60 samples of 128325 calls.
+             Execution time mean : 7.910276 µs
+    Execution time std-deviation : 183.697851 ns
+   Execution time lower quantile : 7.670498 µs ( 2.5%)
+   Execution time upper quantile : 8.329677 µs (97.5%)
+
+Found 9 outliers in 60 samples (15.0000 %)
+        low-severe       9 (15.0000 %)
+ Variance from outliers : 11.0094 % Variance is moderately inflated by outliers
+
+Case:  :query-with-parameterized-fields
+Evaluation count : 29280720 in 60 samples of 488012 calls.
+             Execution time mean : 2.106257 µs
+    Execution time std-deviation : 38.588904 ns
+   Execution time lower quantile : 2.051604 µs ( 2.5%)
+   Execution time upper quantile : 2.201607 µs (97.5%)
+
+Found 4 outliers in 60 samples (6.6667 %)
+        low-severe       4 (6.6667 %)
+ Variance from outliers : 7.7946 % Variance is slightly inflated by outliers
+
+Case:  :simple-query
+Evaluation count : 39670380 in 60 samples of 661173 calls.
+             Execution time mean : 1.532181 µs
+    Execution time std-deviation : 26.967309 ns
+   Execution time lower quantile : 1.493285 µs ( 2.5%)
+   Execution time upper quantile : 1.611846 µs (97.5%)
+
+Found 4 outliers in 60 samples (6.6667 %)
+        low-severe       3 (5.0000 %)
+        low-mild         1 (1.6667 %)
+ Variance from outliers : 6.2930 % Variance is slightly inflated by outliers
+
+Case:  :simple-query-with-explicit-name
+Evaluation count : 33775920 in 60 samples of 562932 calls.
+             Execution time mean : 1.830982 µs
+    Execution time std-deviation : 58.177061 ns
+   Execution time lower quantile : 1.776408 µs ( 2.5%)
+   Execution time upper quantile : 1.928807 µs (97.5%)
+
+Found 1 outliers in 60 samples (1.6667 %)
+        low-severe       1 (1.6667 %)
+ Variance from outliers : 18.9682 % Variance is moderately inflated by outliers
+
+Case:  :query-with-parameterized-fields-and-variables
+Evaluation count : 19098720 in 60 samples of 318312 calls.
+             Execution time mean : 3.135885 µs
+    Execution time std-deviation : 34.933572 ns
+   Execution time lower quantile : 3.063270 µs ( 2.5%)
+   Execution time upper quantile : 3.199935 µs (97.5%)
+
+Found 2 outliers in 60 samples (3.3333 %)
+        low-severe       1 (1.6667 %)
+        low-mild         1 (1.6667 %)
+ Variance from outliers : 1.6389 % Variance is slightly inflated by outliers
+
+Benchmarking environment:  :query-executor
+======================
+Reflection warning, graphql_clj/parser.clj:20:23 - call to method charAt can't be resolved (target class is unknown).
+Reflection warning, graphql_clj/parser.clj:173:80 - call to java.lang.Double ctor can't be resolved.
+Reflection warning, graphql_clj/parser.clj:284:20 - reference to field location can't be resolved.
+Reflection warning, graphql_clj/parser.clj:285:17 - reference to field getMessage can't be resolved.
+Reflection warning, graphql_clj/query_validator.clj:45:11 - reference to field toString can't be resolved.
+Reflection warning, graphql_clj/query_validator.clj:49:71 - call to method append can't be resolved (target class is unknown).
+Reflection warning, clojure/data/priority_map.clj:215:19 - call to method equiv on java.lang.Object can't be resolved (no such method).
+Reflection warning, clojure/core/memoize.clj:72:23 - reference to field cache can't be resolved.
+Benchmarking the following goals:
+query-execution
+query-execution-vars-frag
+Goal:  Verifying GraphQL query execution overhead with variables and fragments
+-----
+Case:  :parsing-only
+Evaluation count : 11757000 in 60 samples of 195950 calls.
+             Execution time mean : 5.145302 µs
+    Execution time std-deviation : 80.220670 ns
+   Execution time lower quantile : 4.966084 µs ( 2.5%)
+   Execution time upper quantile : 5.325488 µs (97.5%)
+
+Found 4 outliers in 60 samples (6.6667 %)
+        low-severe       1 (1.6667 %)
+        low-mild         3 (5.0000 %)
+ Variance from outliers : 1.6389 % Variance is slightly inflated by outliers
+
+Case:  :uncached
+Evaluation count : 361680 in 60 samples of 6028 calls.
+             Execution time mean : 168.936165 µs
+    Execution time std-deviation : 2.746379 µs
+   Execution time lower quantile : 165.795370 µs ( 2.5%)
+   Execution time upper quantile : 175.168077 µs (97.5%)
+
+Found 5 outliers in 60 samples (8.3333 %)
+        low-severe       5 (8.3333 %)
+ Variance from outliers : 3.0549 % Variance is slightly inflated by outliers
+
+Case:  :cached-schema
+Evaluation count : 678000 in 60 samples of 11300 calls.
+             Execution time mean : 89.080952 µs
+    Execution time std-deviation : 1.078086 µs
+   Execution time lower quantile : 87.129139 µs ( 2.5%)
+   Execution time upper quantile : 91.485990 µs (97.5%)
+
+Found 3 outliers in 60 samples (5.0000 %)                                                                                                                                                 [11/1825]
+        low-severe       3 (5.0000 %)
+ Variance from outliers : 1.6389 % Variance is slightly inflated by outliers
+
+Case:  :cached-inline-resolvers
+Evaluation count : 1582020 in 60 samples of 26367 calls.
+             Execution time mean : 38.377192 µs
+    Execution time std-deviation : 708.037081 ns
+   Execution time lower quantile : 37.479726 µs ( 2.5%)
+   Execution time upper quantile : 39.808403 µs (97.5%)
+
+Found 3 outliers in 60 samples (5.0000 %)
+        low-severe       1 (1.6667 %)
+        low-mild         1 (1.6667 %)
+        high-mild        1 (1.6667 %)
+ Variance from outliers : 7.8020 % Variance is slightly inflated by outliers
+
+Goal:  Verifying GraphQL query execution overhead
+-----
+Case:  :cached-schema
+Evaluation count : 943080 in 60 samples of 15718 calls.
+             Execution time mean : 62.829002 µs
+    Execution time std-deviation : 2.039208 µs
+   Execution time lower quantile : 59.256977 µs ( 2.5%)
+   Execution time upper quantile : 66.595125 µs (97.5%)
+
+Found 2 outliers in 60 samples (3.3333 %)
+        low-severe       2 (3.3333 %)
+ Variance from outliers : 19.0112 % Variance is moderately inflated by outliers
+
+Case:  :cached-schema-and-cached-query
+Evaluation count : 1875540 in 60 samples of 31259 calls.
+             Execution time mean : 33.451072 µs
+    Execution time std-deviation : 1.693840 µs
+   Execution time lower quantile : 31.447721 µs ( 2.5%)
+   Execution time upper quantile : 37.025900 µs (97.5%)
+
+Case:  :uncached
+Evaluation count : 999300 in 60 samples of 16655 calls.
+             Execution time mean : 61.314467 µs
+    Execution time std-deviation : 2.223599 µs
+   Execution time lower quantile : 59.023560 µs ( 2.5%)
+   Execution time upper quantile : 66.616005 µs (97.5%)
+
+Found 7 outliers in 60 samples (11.6667 %)
+        low-severe       7 (11.6667 %)
+ Variance from outliers : 22.2553 % Variance is moderately inflated by outliers
+
+Case:  :parsing-only
+Evaluation count : 17775960 in 60 samples of 296266 calls.
+             Execution time mean : 3.458059 µs
+    Execution time std-deviation : 139.659145 ns
+   Execution time lower quantile : 3.285756 µs ( 2.5%)
+   Execution time upper quantile : 3.786609 µs (97.5%)
+
+Found 1 outliers in 60 samples (1.6667 %)
+        low-severe       1 (1.6667 %)
+ Variance from outliers : 27.0516 % Variance is moderately inflated by outliers
